@@ -1,0 +1,38 @@
+package com.gymmanagement.gym_subscription.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.gymmanagement.gym_subscription.model.Member;
+import com.gymmanagement.gym_subscription.service.MemberService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequestMapping("/members")
+@RequiredArgsConstructor
+public class MemberController {
+    private final MemberService memberService;
+
+    @GetMapping
+    public String listMembers(Model model) {
+        model.addAttribute("members", memberService.getAllMembers());
+        return "members/list";
+    }
+    
+    @GetMapping("/form")
+    public String showForm(Model model) {
+        model.addAttribute("member", new Member());
+        return "members/form";
+    }
+    
+    @PostMapping("/save")
+    public String saveMember(@ModelAttribute Member member) {
+        memberService.saveMember(member);
+        return "redirect:/members";
+    }
+}
