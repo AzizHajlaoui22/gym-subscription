@@ -27,7 +27,7 @@
                 <td th:text="${member.firstName + ' ' + member.lastName}"></td>
                 <td th:text="${member.email}"></td>
                 <td th:text="${member.phone}"></td>
-                <td th:text="${#dates.format(member.registrationDate, 'dd/MM/yyyy')}"></td>
+                <td th:text="${#temporals.format(member.registrationDate, 'dd/MM/yyyy')}"></td>
                 <td th:text="${member.subscriptionType?.name()}"></td>
                 <td>
                     <span th:if="${member.subscription}" 
