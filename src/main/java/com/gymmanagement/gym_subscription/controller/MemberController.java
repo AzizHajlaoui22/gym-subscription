@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,4 +36,16 @@ public class MemberController {
         memberService.saveMember(member);
         return "redirect:/members";
     }
+    @GetMapping("/edit/{id}")
+public String editMember(@PathVariable("id") Long id, Model model) {
+    Member member = memberService.getMemberById(id);
+    model.addAttribute("member", member);
+    return "members/form"; // Réutilise le même formulaire que l'ajout
+}
+    
+    @GetMapping("/delete/{id}")
+ public String deleteMember(@PathVariable("id") Long id) {
+    memberService.deleteMember(id);
+    return "redirect:/members"; // Redirige vers la liste après suppression
+}
 }

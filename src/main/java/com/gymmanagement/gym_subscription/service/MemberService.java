@@ -25,4 +25,9 @@ public class MemberService {
     public void deleteMember(Long id) {
         memberRepository.deleteById(id);
     }
+    public Member getMemberById(Long id) {
+        return memberRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Membre introuvable"));
+    }
+    
 }
