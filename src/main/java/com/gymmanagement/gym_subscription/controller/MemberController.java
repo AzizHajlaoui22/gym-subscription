@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gymmanagement.gym_subscription.model.Member;
-import com.gymmanagement.gym_subscription.service.MemberService;
+import com.gymmanagement.gym_subscription.service.member.MemberService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,12 +1,17 @@
 package com.gymmanagement.gym_subscription.repository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.gymmanagement.gym_subscription.model.Subscription;
 
+@Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
-    List<Subscription> findByEndDateBefore(LocalDate date);
+    
+    /**
+     * ✅ Récupérer tous les abonnements d'un membre spécifique
+     */
+    List<Subscription> findByMemberId(Long memberId);
 }

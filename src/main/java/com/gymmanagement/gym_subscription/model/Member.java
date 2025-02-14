@@ -1,15 +1,16 @@
 package com.gymmanagement.gym_subscription.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List; // 🔹 Import manquant !
 
-import com.gymmanagement.gym_subscription.model.enums.SubscriptionType;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,9 +30,7 @@ public class Member {
     private String email;
     private String phone;
     private LocalDate registrationDate;
-    private SubscriptionType subscriptionType;
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    private Subscription subscription;
-    // Getters/Setters/Constructors
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true) // 🔹 Ajout de orphanRemoval
+    private List<Subscription> subscriptions = new ArrayList<>();
 }

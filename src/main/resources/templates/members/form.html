@@ -36,17 +36,10 @@
             <input type="date" class="form-control" th:field="*{registrationDate}" required>
         </div>
         
-        <div class="mb-3">
-            <label class="form-label">Type d'abonnement</label>
-            <select class="form-select" th:field="*{subscriptionType}">
-                <option th:each="type : ${T(com.gymmanagement.gym_subscription.model.enums.SubscriptionType).values()}" 
-                th:value="${type}" 
-                th:text="${type.name()}"></option>
-        
-            </select>
-        </div>
         
         <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>
+    <a href="/members" class="btn btn-secondary mt-3">Retour</a>
+
 </body>
 </html>
